@@ -6,7 +6,7 @@ import { SignUp } from "../screens/Public/SignUp";
 
 export const PublicRoutes: React.FC = () => {
   return (
-    <Routes>
+    <Routes location={"/"} >
       <Route path="/" element={<SignIn />} />
       <Route path="/create-account" element={<SignUp />} />
       <Route path="/forgot-password"></Route>
