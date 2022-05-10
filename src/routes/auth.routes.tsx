@@ -5,7 +5,7 @@ import { Dashboard } from "../screens/Auth/Dashboard";
 
 export const AuthRoutes: React.FC = () => {
   return (
-    <Routes>
+    <Routes location={"/"}>
       <Route path="/" element={<Dashboard />} />
     </Routes>
   );
