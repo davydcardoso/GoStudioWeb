@@ -88,6 +88,29 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
 
       const { token, user } = response.data;
 
+      const { roles: userRoles } = user as UserProps;
+
+      const rolesMasters = ["ROLE_ADMIN", "ROLE_DEVELOPER"];
+      const existsRole = rolesMasters.some((role) => userRoles.includes(role));
+
+      if (!existsRole) {
+        toast.error(
+          "Ops! Sua conta não possui acesso administrativo ao sistema, por favor entre em contato com a RocketApps",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
+
+        setLoading(false);
+        return;
+      }
+
       localStorage.setItem("@gostudio:token", token);
       localStorage.setItem("@gostudio:user", JSON.stringify(user));
 
